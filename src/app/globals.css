@@ -31,6 +31,10 @@ button{
   cursor: pointer;
 }
 
+input, textarea {
+  user-select: text;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

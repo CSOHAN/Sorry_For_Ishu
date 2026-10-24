@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 
-export default function GiftPage() {
+export default function GiftPage({ setCurrentPage }) {
   const [giftOpened, setGiftOpened] = useState(false)
   const [showSurprise, setShowSurprise] = useState(false)
 
@@ -214,6 +214,17 @@ export default function GiftPage() {
                     >
                       You mean everything to me I LOVE YOU 💕✨
                     </motion.p>
+                    <motion.button
+                      onClick={() => setCurrentPage("agreement")}
+                      className="mt-4 px-10 py-4 bg-gradient-to-r from-pink-500/30 to-purple-500/30 backdrop-blur-sm border border-pink-300/40 rounded-full text-pink-100 text-lg hover:from-pink-500/40 hover:to-purple-500/40 transition-all duration-500 shadow-xl shadow-pink-500/30"
+                      whileHover={{ scale: 1.03, y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 1.2 }}
+                    >
+                      One last promise... 💌
+                    </motion.button>
                   </motion.div>
                 )}
               </AnimatePresence>

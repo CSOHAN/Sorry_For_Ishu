@@ -9,6 +9,7 @@ import ApologyPage from "@/components/ApologyPage"
 import LetterPage from "@/components/LetterPage"
 import HugPage from "@/components/HugPage"
 import GiftPage from "@/components/GiftPage"
+import AgreementPage from "@/components/AgreementPage"
 import MusicPlayer from "@/components/MusicPlayer"
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
     letter: LetterPage,
     hug: HugPage,
     gift: GiftPage,
+    agreement: AgreementPage,
   }
 
   const CurrentComponent = pages[currentPage]
@@ -40,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-900 relative overflow-x-hidden overflow-y-auto">
       <StarryBackground />
 
       {/* Uncomment this if you want to add a background song */}
