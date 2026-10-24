@@ -8,14 +8,28 @@ export default function MusicPlayer({ musicPlaying, setMusicPlaying }) {
   const audioRef = useRef(null)
 
   useEffect(() => {
-    if (audioRef.current) {
-      // audioRef.current.volume = 0.5; // Adjust the song volume here
-      if (musicPlaying) {
-        audioRef.current.play().catch(console.error)
-      } else {
-        audioRef.current.pause()
-      }
+    const audio = audioRef.current
+    if (!audio) return
+
+    audio.volume = 0.7
+
+    if (!musicPlaying) {
+      audio.pause()
+      return
     }
+
+    const play = () => {
+      audio.play().catch(console.error)
+    }
+
+    if (audio.readyState >= 2) {
+      play()
+      return
+    }
+
+    audio.addEventListener("canplay", play, { once: true })
+    audio.load()
+    return () => audio.removeEventListener("canplay", play)
   }, [musicPlaying])
 
   const toggleMusic = () => {
@@ -38,10 +52,12 @@ export default function MusicPlayer({ musicPlaying, setMusicPlaying }) {
         {musicPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
       </motion.button>
 
-      {/* Change the audio source to original one */}
-      <audio ref={audioRef} loop preload="auto">
-        <source src="/audio/bg.mp3" type="audio/wav" />
-      </audio>
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+        src="/audio/gehra_hua_lyrics_english_translation_dhurandhar_arijit_singh_s.mp3"
+      />
     </motion.div>
   )
 }
